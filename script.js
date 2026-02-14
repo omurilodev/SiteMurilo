@@ -115,3 +115,48 @@ document.querySelectorAll('.nav-list a').forEach(link => {
     mobileMenu.classList.remove('active');
   });
 });
+
+
+
+
+
+
+/** FORM */
+
+const form = document.getElementById('meuFormulario');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Impede a página de recarregar
+
+    const btn = form.querySelector('.botaoForm');
+    btn.innerText = 'Enviando...';
+    btn.disabled = true;
+
+    // Captura os dados do formulário
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      // SUBSTITUA A URL ABAIXO PELA SUA URL DO WEBHOOK NO N8N
+      const response = await fetch('https://hook.neowchat.com.br/webhook/contato-site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert('Dados enviados com sucesso!');
+        form.reset();
+      } else {
+        alert('Erro ao enviar. Tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('Erro na conexão com o servidor.');
+    } finally {
+      btn.innerText = 'enviar';
+      btn.disabled = false;
+    }
+  });
