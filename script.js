@@ -2,10 +2,6 @@ const track = document.getElementById('track');
 const cards = document.querySelectorAll('.card');
 let currentIndex = 1; // Começa no segundo card
 
-// CONFIGURAÇÕES (Devem bater com o CSS)
-const cardWidth = 300; 
-const gap = 20; 
-
 function updateCarousel() {
   cards.forEach((card, index) => {
     // Adiciona/Remove classe active
@@ -16,16 +12,15 @@ function updateCarousel() {
     }
   });
 
-  // LÓGICA MATEMÁTICA DE CENTRALIZAÇÃO:
-  // 1. O container tem o ponto zero no meio (left: 50% no CSS).
-  // 2. Precisamos mover o trilho para a ESQUERDA (negativo).
-  // 3. A quantidade é: (LarguraCard + Gap) * IndiceAtual.
-  // 4. + Metade de um card (para centralizar o item e não a borda esquerda dele).
+  // LÓGICA DINÂMICA:
+  // Lê a largura exata do primeiro card e o gap diretamente do CSS no momento da execução.
+  const cardWidth = cards[0].offsetWidth; 
+  // Pega o valor do gap definido no CSS (caso não encontre, usa 20 como fallback)
+  const gap = parseFloat(getComputedStyle(track).gap) || 20; 
+
+  const centerPosition = (cardWidth / 2);
+  const itemPosition = currentIndex * (cardWidth + gap); 
   
-  const centerPosition = (cardWidth / 2); // 150px
-  const itemPosition = currentIndex * (cardWidth + gap); // Posição do item atual na fila
-  
-  // O deslocamento total é a soma da posição do item + o ajuste de centro, invertido para negativo
   const finalTransform = -(itemPosition + centerPosition);
 
   track.style.transform = `translateX(${finalTransform}px)`;
@@ -43,6 +38,9 @@ function moveSlide(direction) {
 
   updateCarousel();
 }
+
+// Garante que o carrossel se recalcule se o usuário virar o celular de lado ou redimensionar a janela
+window.addEventListener('resize', updateCarousel);
 
 // Inicia
 updateCarousel();
@@ -97,3 +95,5 @@ const itens = document.querySelectorAll('.passos li');
       item.style.borderLeft = "4px solid #D3C5A4";
     });
   });
+
+  
