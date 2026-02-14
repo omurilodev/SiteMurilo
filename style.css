@@ -1400,3 +1400,55 @@ footer{
     font-size: 18px; /* Diminui um pouco a fonte */
   }
 }
+
+
+/* Estilização do Botão */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito de Hover */
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    background-color: #20ba5a;
+    color: #fff;
+}
+
+/* Tooltip (Opcional) */
+.whatsapp-btn .tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    right: 125%;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Inter';
+}
+
+.whatsapp-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
