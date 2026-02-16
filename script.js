@@ -54,15 +54,15 @@ updateCarousel();
 document.addEventListener("DOMContentLoaded", () => {
   const observador = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      // Se a seção entrou na tela
+     
       if (entry.isIntersecting) {
         entry.target.classList.add('ativo');
-        // Opcional: Para de observar depois que animou a primeira vez
+        
         observador.unobserve(entry.target); 
       }
     });
   }, {
-    threshold: 0.3 // Dispara quando 30% da seção estiver visível
+    threshold: 0.3 
   });
 
   const sectionProcesso = document.querySelector('#processo');
@@ -137,7 +137,6 @@ const form = document.getElementById('meuFormulario');
     const data = Object.fromEntries(formData);
 
     try {
-      // SUBSTITUA A URL ABAIXO PELA SUA URL DO WEBHOOK NO N8N
       const response = await fetch('https://hook.neowchat.com.br/webhook/contato-site', {
         method: 'POST',
         headers: {

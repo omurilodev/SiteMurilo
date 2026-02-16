@@ -1241,7 +1241,7 @@ footer{
   }
   
   /* Ajustes Hero Image */
-  .textoInicio { top: 60%; }
+  .textoInicio { top: 70%; }
   .inicio img { max-width: 100%; }
 
   /* Ajustes Portfólio Slider */
@@ -1393,11 +1393,11 @@ footer{
 /* Ajustes finos para Mobile Pequeno (425px) */
 @media (max-width: 425px) {
   .nav-list {
-    width: 100vw; /* Tela cheia no celular pequeno */
+    width: 100vw; 
   }
   
   header ul {
-    font-size: 18px; /* Diminui um pouco a fonte */
+    font-size: 18px; 
   }
 }
 
